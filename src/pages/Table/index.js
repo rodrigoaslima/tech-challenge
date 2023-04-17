@@ -1,4 +1,5 @@
 import React, {useRef, useState, useEffect}from 'react';
+import {useMarket} from '../../context/MarketContext';
 import { Typography } from "@mui/material";
 
 import  LinkButton from '../../components/LinkButton';
@@ -10,10 +11,9 @@ import Api from '../../services/Api/api';
 import { Container } from './styles';
 
 function MarketTable() {
-
-  const socketIo = useRef(null);
-  const [market, setmarket] = useState([]);
   const [searchText, setSearchText] = useState('');
+
+  const {getMarkets, markets} = useMarket()
 
   const handleSearch = (event) =>{
     setSearchText(event.target.value)
@@ -30,7 +30,7 @@ function MarketTable() {
     { field: 'transaction_type', headerName: 'Transaction', width: 100 },
   ]
 
-  const filteredRows = market.filter((row) => {
+  const filteredRows = markets.filter((row) => {
     return (
       row.account_name.toLowerCase().includes(searchText.toLowerCase()) ||
       row.credit_card_issuer.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -39,15 +39,10 @@ function MarketTable() {
   });
 
   useEffect(() => {
-    socketIo.current = Api;
+    getMarkets()
+  }, [getMarkets]);
 
-    socketIo.current.on("market-data", (data) =>{
-      setmarket([...market, data])
-    });
-    //return () => socketIo.current.disconnect();
-  }, [market]);
-
-  if (!market) {
+  if (!markets) {
     return <Typography>There's no one market connected at moment</Typography>;
   }
 

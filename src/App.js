@@ -5,13 +5,16 @@ import Routess from '../src/routes/Routes';
 
 import {theme} from './global'
 import { ClientProvider } from './context/ClientContext';
+import { MarketProvider } from './context/MarketContext';
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ClientProvider>
-        <CssBaseline/>
-        <Routess/>
+        <MarketProvider>
+          <CssBaseline/>
+          <Routess/>
+        </MarketProvider>
       </ClientProvider>
     </ThemeProvider>
     
