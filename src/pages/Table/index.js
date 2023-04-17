@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 
 import  LinkButton from '../../components/LinkButton';
 import  TableComponent from '../../components/TableComponent';
-import SearchComponent from '../../components/SearchComponent'
+import SearchComponent from '../../components/SearchComponent';
 
 import Api from '../../services/Api/api';
 

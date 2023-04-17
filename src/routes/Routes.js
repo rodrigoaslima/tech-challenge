@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, BrowserRouter, Routes, Navigate} from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate} from "react-router-dom";
 
 import InfoCard from '../pages/InfoCard';
 import MarketTable from '../pages/Table';
@@ -7,7 +7,7 @@ import MarketTable from '../pages/Table';
 
 const Routess = () => {
    return(
-       <BrowserRouter>
+       <HashRouter>
             <Routes>
                 <Route 
                     path="/" exact
@@ -16,7 +16,7 @@ const Routess = () => {
                 <Route element = { <InfoCard/> }  path="/user" />
                 <Route element = { <MarketTable/> }  path="/table" />
             </Routes>
-       </BrowserRouter>
+       </HashRouter>
    )
 }
 

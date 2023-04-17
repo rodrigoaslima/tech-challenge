@@ -1,5 +1,5 @@
-import React,{useRef, useState, useEffect} from 'react';
-import Api from '../../services/Api/api';
+import React,{useEffect} from 'react';
+import {useClient } from '../../context/ClientContext';
 
 import { Typography } from "@mui/material";
 
@@ -9,18 +9,11 @@ import CardComponent from '../../components/CardComponent';
 import {Container} from './styles';
 
 function InfoCard() {
-    const socketIo = useRef(null);
-    const [client, setClient] = useState(null);
+    const {getClient, client} = useClient();
 
     useEffect(() => {
-        socketIo.current = Api;
-    
-        socketIo.current.on(
-          "client-connected",
-          (client) => client && setClient(client)
-        );
-        //return () => socketIo.current.disconnect();
-    }, [client]);
+        getClient();
+    }, [getClient]);
     
     if (!client) {
         return <Typography>There's no one client connected at moment</Typography>;
