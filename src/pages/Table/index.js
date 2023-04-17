@@ -1,12 +1,10 @@
-import React, {useRef, useState, useEffect}from 'react';
+import React, {useState, useEffect}from 'react';
 import {useMarket} from '../../context/MarketContext';
 import { Typography } from "@mui/material";
 
 import  LinkButton from '../../components/LinkButton';
 import  TableComponent from '../../components/TableComponent';
 import SearchComponent from '../../components/SearchComponent';
-
-import Api from '../../services/Api/api';
 
 import { Container } from './styles';
 
